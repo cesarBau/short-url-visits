@@ -1,7 +1,5 @@
 package com.rabbit.visits.service;
 
-import java.time.LocalDateTime;
-
 import org.springframework.stereotype.Service;
 
 import com.rabbit.visits.entity.StatusUrl;
@@ -21,18 +19,10 @@ public class VisitService implements IVisit {
     }
 
     @Override
-    public void createVisit(String visit) {
+    public void createVisit(Visit visit) {
         log.info("Consume service createVisit");
         log.info("Create visit");
-        String[] valuesSplit = visit.split("\\|");
-        LocalDateTime consumeDate = LocalDateTime.parse(valuesSplit[0]);
-        String hash = valuesSplit[1];
-        String status = valuesSplit[2];
-        Visit values = new Visit();
-        values.setHash(hash);
-        values.setConsume(consumeDate);
-        values.setStatusUrl(generateStatusUrl(status));
-        visitRepository.save(values);
+        visitRepository.save(visit);
     }
 
     public StatusUrl generateStatusUrl(String status) {
