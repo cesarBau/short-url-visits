@@ -14,19 +14,19 @@ import org.springframework.context.annotation.PropertySource;
 public class AmqpConfig {
 
     @Value("${amqp.queue}")
-    public String QUEUE_NAME;
+    public String queueName;
 
     @Value("${amqp.exchange}")
-    public String EXCHANGE_NAME;
+    public String exchangeName;
 
     @Bean
     public Queue queue() {
-        return new Queue(QUEUE_NAME, false);
+        return new Queue(queueName, false);
     }
 
     @Bean
     public TopicExchange exchange() {
-        return new TopicExchange(EXCHANGE_NAME);
+        return new TopicExchange(exchangeName);
     }
 
     @Bean

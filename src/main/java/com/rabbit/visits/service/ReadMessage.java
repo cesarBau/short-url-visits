@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbit.visits.entity.Visit;
 
@@ -22,7 +21,7 @@ public class ReadMessage {
     private IVisit iVisit;
 
     @RabbitListener(queues = "visits")
-    public void processMessage(String content) throws JsonMappingException, JsonProcessingException {
+    public void processMessage(String content) throws JsonProcessingException {
         log.info("Consume service processMessage");
         log.info(content);
         Visit message = objectMapper.readValue(content, Visit.class);
